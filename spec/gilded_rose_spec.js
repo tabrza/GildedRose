@@ -29,7 +29,7 @@ describe("Gilded Rose", function() {
 
   });
 
-  xdescribe("Sulfuras, Hand of Ragnaros", function(){
+  describe("Sulfuras, Hand of Ragnaros", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 1, 9) ]);
       items = gildedRose.updateQuality();

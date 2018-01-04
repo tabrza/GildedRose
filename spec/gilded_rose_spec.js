@@ -1,0 +1,3 @@
+describe("Gilded Rose", function() {
+
+});

@@ -23,7 +23,15 @@ class Shop {
         }
       }
 
-      
+      if(this.items[i].name === '+5 Dexterity Vest'){
+        if(this.items[i].sellIn > 0 && this.items[i].quality > 0){
+          this.items[i].quality -= 1;
+        } else if(this.items[i].quality > 0){
+          this.items[i].quality -= 2;
+        } else {
+          this.items[i].quality = 0;
+        }
+      }
 
       // if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
       //   if (this.items[i].quality > 0) {

@@ -52,5 +52,67 @@ describe("Gilded Rose", function() {
 
   });
 
-  
+  describe("TAFKAL80ETC concert", function(){
+    beforeEach(function(){
+      gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 11, 40) ]);
+      items = gildedRose.updateQuality();
+    });
+
+    it("returns Backstage passes to a TAFKAL80ETC concert", function() {
+      expect(items[0].name).toEqual("Backstage passes to a TAFKAL80ETC concert");
+    });
+
+    it("does not have negative quality", function(){
+      for(var i = 0; i < 50; i++){
+        gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(0);
+    });
+
+    it("does not have quality over 50", function(){
+      for(var i = 0; i < 5; i++){
+        gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(50);
+    });
+
+    it("increases by quality by 2 when less than 10 days left", function(){
+      gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(42);
+    });
+
+    it("increases by quality by 3 when less than 5 days left", function(){
+      gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(43);
+    });
+
+
+  });
+
+  describe("Elixir of the Mongoose", function(){
+    it("returns Elixir of the Mongoose", function() {
+      const gildedRose = new Shop([ new Item("Elixir of the Mongoose", 0, 0) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].name).toEqual("Elixir of the Mongoose");
+    });
+  });
+
+  describe("+5 Dexterity Vest", function(){
+    it("returns +5 Dexterity Vest", function() {
+      const gildedRose = new Shop([ new Item("+5 Dexterity Vest", 0, 0) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].name).toEqual("+5 Dexterity Vest");
+    });
+
+  });
+
+  describe("Conjured Mana Cake", function(){
+    it("returns Conjured Mana Cake", function() {
+      const gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 0) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].name).toEqual("Conjured Mana Cake");
+    });
+  });
 });

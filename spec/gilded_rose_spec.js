@@ -1,7 +1,7 @@
 describe("Gilded Rose", function() {
   var gildedRose, items;
 
-  xdescribe("Aged brie", function(){
+  describe("Aged brie", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Aged Brie", 1, 9) ]);
       items = gildedRose.updateQuality();
@@ -17,7 +17,7 @@ describe("Gilded Rose", function() {
 
     it("does not reduce quality by half if sell by date passed", function(){
       gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(12);
+      expect(items[0].quality).toEqual(11);
     });
 
     it("does not have a quality level greater than 50", function(){

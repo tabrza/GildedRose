@@ -1,7 +1,7 @@
 describe("Gilded Rose", function() {
   var gildedRose, items;
 
-  describe("Aged brie", function(){
+  xdescribe("Aged brie", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Aged Brie", 1, 9) ]);
       items = gildedRose.updateQuality();
@@ -29,7 +29,7 @@ describe("Gilded Rose", function() {
 
   });
 
-  describe("Sulfuras, Hand of Ragnaros", function(){
+  xdescribe("Sulfuras, Hand of Ragnaros", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 1, 9) ]);
       items = gildedRose.updateQuality();
@@ -52,7 +52,7 @@ describe("Gilded Rose", function() {
 
   });
 
-  describe("TAFKAL80ETC concert", function(){
+  xdescribe("TAFKAL80ETC concert", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 11, 40) ]);
       items = gildedRose.updateQuality();
@@ -150,7 +150,7 @@ describe("Gilded Rose", function() {
 
   });
 
-  describe("Conjured Mana Cake", function(){
+  xdescribe("Conjured Mana Cake", function(){
     it("returns Conjured Mana Cake", function() {
       const gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 0) ]);
       const items = gildedRose.updateQuality();

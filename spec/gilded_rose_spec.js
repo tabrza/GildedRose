@@ -147,7 +147,6 @@ describe("Gilded Rose", function() {
       }
       expect(items[0].quality).toEqual(0);
     });
-
   });
 
   xdescribe("Conjured Mana Cake", function(){

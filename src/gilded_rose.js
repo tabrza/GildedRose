@@ -32,6 +32,9 @@ class Shop {
           }
         }
 
+      if(this.items[i].name === 'Sulfuras, Hand of Ragnaros'){
+        
+      }
 
 
       // if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {

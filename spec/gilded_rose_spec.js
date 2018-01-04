@@ -162,13 +162,13 @@ describe("Gilded Rose", function() {
     it("reduces quality by double after sell by date", function(){
       gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 10) ]);
       items = gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(8);
+      expect(items[0].quality).toEqual(6);
     });
 
-    it("reduces quality by one before sell by date", function(){
+    it("reduces quality by two before sell by date", function(){
       gildedRose = new Shop([ new Item("Conjured Mana Cake", 1, 10) ]);
       items = gildedRose.updateQuality();
-      expect(items[0].quality).toEqual(9);
+      expect(items[0].quality).toEqual(8);
     });
 
     it("does not have quality below 0", function(){

@@ -52,7 +52,7 @@ describe("Gilded Rose", function() {
 
   });
 
-  xdescribe("TAFKAL80ETC concert", function(){
+  describe("TAFKAL80ETC concert", function(){
     beforeEach(function(){
       gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 11, 40) ]);
       items = gildedRose.updateQuality();
@@ -70,9 +70,13 @@ describe("Gilded Rose", function() {
     });
 
     it("does not have quality over 50", function(){
+      console.log(items[0].quality);
+      
       for(var i = 0; i < 5; i++){
         gildedRose.updateQuality();
       }
+      console.log(items[0].quality);
+
       expect(items[0].quality).toEqual(50);
     });
 

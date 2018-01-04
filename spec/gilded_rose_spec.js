@@ -87,17 +87,45 @@ describe("Gilded Rose", function() {
       items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(43);
     });
-
-
   });
 
   describe("Elixir of the Mongoose", function(){
+    beforeEach(function(){
+      gildedRose = new Shop([ new Item("Elixir of the Mongoose", 5, 10) ]);
+      items = gildedRose.updateQuality();
+    });
+
     it("returns Elixir of the Mongoose", function() {
-      const gildedRose = new Shop([ new Item("Elixir of the Mongoose", 0, 0) ]);
-      const items = gildedRose.updateQuality();
       expect(items[0].name).toEqual("Elixir of the Mongoose");
     });
+
+    it("reduces quality by double after sell by date", function(){
+      gildedRose = new Shop([ new Item("Elixir of the Mongoose", 0, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it("reduces quality by one before sell by date", function(){
+      gildedRose = new Shop([ new Item("Elixir of the Mongoose", 1, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(9);
+    });
+
+    it("does not have quality below 0", function(){
+      for (var i = 0; i < 10; i++){
+        gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(0);
+    });
+
   });
+
+
+
+
+
+
+
 
   describe("+5 Dexterity Vest", function(){
     it("returns +5 Dexterity Vest", function() {

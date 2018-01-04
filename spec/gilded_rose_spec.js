@@ -117,21 +117,35 @@ describe("Gilded Rose", function() {
       }
       expect(items[0].quality).toEqual(0);
     });
-
   });
 
-
-
-
-
-
-
-
   describe("+5 Dexterity Vest", function(){
+    beforeEach(function(){
+      gildedRose = new Shop([ new Item("+5 Dexterity Vest", 0, 0) ]);
+      items = gildedRose.updateQuality();
+    });
+
     it("returns +5 Dexterity Vest", function() {
-      const gildedRose = new Shop([ new Item("+5 Dexterity Vest", 0, 0) ]);
-      const items = gildedRose.updateQuality();
       expect(items[0].name).toEqual("+5 Dexterity Vest");
+    });
+
+    it("reduces quality by double after sell by date", function(){
+      gildedRose = new Shop([ new Item("+5 Dexterity Vest", 0, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it("reduces quality by one before sell by date", function(){
+      gildedRose = new Shop([ new Item("+5 Dexterity Vest", 1, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(9);
+    });
+
+    it("does not have quality below 0", function(){
+      for (var i = 0; i < 10; i++){
+        gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(0);
     });
 
   });

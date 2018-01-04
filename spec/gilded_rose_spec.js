@@ -70,13 +70,9 @@ describe("Gilded Rose", function() {
     });
 
     it("does not have quality over 50", function(){
-      console.log(items[0].quality);
-      
       for(var i = 0; i < 5; i++){
         gildedRose.updateQuality();
       }
-      console.log(items[0].quality);
-
       expect(items[0].quality).toEqual(50);
     });
 
@@ -153,11 +149,33 @@ describe("Gilded Rose", function() {
     });
   });
 
-  xdescribe("Conjured Mana Cake", function(){
+  describe("Conjured Mana Cake", function(){
+    beforeEach(function(){
+      gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 0) ]);
+      items = gildedRose.updateQuality();
+    });
+
     it("returns Conjured Mana Cake", function() {
-      const gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 0) ]);
-      const items = gildedRose.updateQuality();
       expect(items[0].name).toEqual("Conjured Mana Cake");
+    });
+
+    it("reduces quality by double after sell by date", function(){
+      gildedRose = new Shop([ new Item("Conjured Mana Cake", 0, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it("reduces quality by one before sell by date", function(){
+      gildedRose = new Shop([ new Item("Conjured Mana Cake", 1, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(9);
+    });
+
+    it("does not have quality below 0", function(){
+      for (var i = 0; i < 10; i++){
+        gildedRose.updateQuality();
+      }
+      expect(items[0].quality).toEqual(0);
     });
   });
 });

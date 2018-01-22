@@ -17,53 +17,86 @@ class Shop {
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
 
-      if(this.items[i].name === 'Elixir of the Mongoose' || this.items[i].name === '+5 Dexterity Vest'){
-        if(this.items[i].sellIn > MINSELLBY && this.items[i].quality > MINQUALITY){
-          this.items[i].quality -= 1;
-          this.items[i].sellIn -= 1;
-        } else if(this.items[i].sellIn <= MINSELLBY && this.items[i].quality > MINQUALITY){
-          this.items[i].quality -= 2;
-        } else {
-          this.items[i].quality = 0;
-        }
+      if(this.items[i].name === 'Elixir of the Mongoose'){
+        updateElixir(this.items[i]);
       }
 
-      if(this.items[i].name === 'Aged Brie' && this.items[i].quality < MAXQUALITY ){
-          this.items[i].quality += 1;
+      if(this.items[i].name === '+5 Dexterity Vest'){
+        updateDexterity(this.items[i]);
       }
 
       if(this.items[i].name === 'Sulfuras, Hand of Ragnaros'){
 
       }
 
+      if(this.items[i].name === 'Conjured Mana Cake'){
+        updateConjured(this.items[i]);
+      }
+
       if(this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert'){
-        if(this.items[i].quality == 49){
-          this.items[i].quality += 1;
-          this.items[i].sellIn -= 1;
-        } else if(this.items[i].quality < MAXQUALITY && this.items[i].sellIn > 10){
-          this.items[i].quality += 1;
-          this.items[i].sellIn -= 1;
-        } else if(this.items[i].quality < MAXQUALITY && this.items[i].sellIn > 5){
-          this.items[i].quality += 2;
-          this.items[i].sellIn -= 1;
-        } else if(this.items[i].quality < MAXQUALITY && this.items[i].sellIn > MINSELLBY){
-          this.items[i].quality += 3;
-          this.items[i].sellIn -= 1;
+        updateConcert(this.items[i]);
+      }
+
+      if(this.items[i].name === 'Aged Brie' && this.items[i].quality < MAXQUALITY ){
+        updateBrie(this.items[i]);
+      }
+
+      function updateElixir(item){
+        if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 1;
+          item.sellIn -= 1;
+        } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 2;
         } else {
-          this.items[i].quality = 0;
+          item.quality = 0;
+        }
+      };
+
+      function updateDexterity(item){
+        if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 1;
+          item.sellIn -= 1;
+        } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 2;
+        } else {
+          item.quality = 0;
+        }
+      };
+
+      function updateBrie(item){
+        item.quality += 1;
+      }
+
+      function updateConcert(item){
+          if(item.quality == 49){
+            item.quality += 1;
+            item.sellIn -= 1;
+          } else if(item.quality < MAXQUALITY && item.sellIn > 10){
+            item.quality += 1;
+            item.sellIn -= 1;
+          } else if(item.quality < MAXQUALITY && item.sellIn > 5){
+            item.quality += 2;
+            item.sellIn -= 1;
+          } else if(item.quality < MAXQUALITY && item.sellIn > MINSELLBY){
+            item.quality += 3;
+            item.sellIn -= 1;
+          } else {
+            item.quality = 0;
+          }
+      }
+
+      function updateConjured(item){
+        if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 2;
+          item.sellIn -= 1;
+        } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
+          item.quality -= 4;
+        } else {
+          item.quality = 0;
         }
       }
 
-      if(this.items[i].name === 'Conjured Mana Cake'){
-        if(this.items[i].sellIn > MINSELLBY && this.items[i].quality > MINQUALITY){
-          this.items[i].quality -= 2;
-          this.items[i].sellIn -= 1;
-        } else if(this.items[i].sellIn <= MINSELLBY && this.items[i].quality > MINQUALITY){
-          this.items[i].quality -= 4;
-        } else {
-          this.items[i].quality = 0;
-        }
-      }
+
     }
 
     return this.items;

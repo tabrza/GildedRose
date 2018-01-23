@@ -9,6 +9,7 @@ To read, refactor and extend legacy code.
 
 ## Tested Using
 - Jasmine
+- To do: testing for edge cases
 
 ## How to set up the application
 > git clone https://github.com/tabrza/gildedrose

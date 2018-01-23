@@ -1,61 +1,65 @@
+
+const MINSELLBY = 0;
+const MAXQUALITY = 50;
+const MINQUALITY = 0;
+
 class ItemType {
-  constructor(){
-
+  constructor(update = new Update()){
+    this.update = update;
   }
-
 
   _updateElixir(item){
     if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
-      item.quality -= 1;
-      item.sellIn -= 1;
+      this.update.quality(item, -1);
+      this.update.sellIn(item);
     } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
-      item.quality -= 2;
+      this.update.quality(item, -2);
     } else {
-      item.quality = 0;
+      this.update.qualityToZero(item);
     }
   };
 
   _updateDexterity(item){
     if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
-      item.quality -= 1;
-      item.sellIn -= 1;
+      this.update.quality(item, -1);
+      this.update.sellIn(item);
     } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
       item.quality -= 2;
     } else {
-      item.quality = 0;
+      this.update.qualityToZero(item);
     }
   };
 
   _updateBrie(item){
-    item.quality += 1;
+    this.update.quality(item, 1);
   }
 
   _updateConcert(item){
     if(item.quality == 49){
-      item.quality += 1;
-      item.sellIn -= 1;
+      this.update.quality(item, 1);
+      this.update.sellIn(item);
     } else if(item.quality < MAXQUALITY && item.sellIn > 10){
-      item.quality += 1;
-      item.sellIn -= 1;
+      this.update.quality(item, 1);
+      this.update.sellIn(item);
     } else if(item.quality < MAXQUALITY && item.sellIn > 5){
-      item.quality += 2;
-      item.sellIn -= 1;
+      this.update.quality(item, 2);
+      this.update.sellIn(item);
     } else if(item.quality < MAXQUALITY && item.sellIn > MINSELLBY){
-      item.quality += 3;
-      item.sellIn -= 1;
+      this.update.quality(item, 3);
+      this.update.sellIn(item);
     } else {
-      item.quality = 0;
+      this.update.qualityToZero(item);
     }
   }
 
    _updateConjured(item){
     if(item.sellIn > MINSELLBY && item.quality > MINQUALITY){
-      item.quality -= 2;
-      item.sellIn -= 1;
+      this.update.quality(item, -2);
+      this.update.sellIn(item);
     } else if(item.sellIn <= MINSELLBY && item.quality > MINQUALITY){
-      item.quality -= 4;
+      this.update.quality(item, -4);
     } else {
-      item.quality = 0;
+      this.update.qualityToZero(item);
     }
   }
 
